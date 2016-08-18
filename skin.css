@@ -1,0 +1,164 @@
+/*
+Inspired by "Create a CSS Flipping Animation // David Walsh" @ https://davidwalsh.name/
+*/
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #D7D7D7;
+}
+
+/* Menu */
+ul#menu {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+}
+
+ul#menu li {
+    position: relative;
+    float: center;
+    border-bottom: 4px solid #EFEFEF;
+    margin-right: 10px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+ul#menu .current {
+    border-bottom:4px solid #3D496A;
+}
+
+ul#menu li:hover {
+    border-bottom:4px solid #3D496A;
+}
+
+ul#menu li a {
+    padding: 2px 2px;
+    text-decoration: none;
+    font: bold 13px "Trebuchet MS", Helvetica, sans-serif;
+    color: #68759C;
+}
+
+ul#menu li a:hover {
+    color: #8895B8;
+    border: none;
+}
+
+/* Body */
+.container {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+}
+
+.back {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    background-color: #F8F8F8;
+    display: table;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+.front {
+    z-index: 2;
+    display: table;
+    box-shadow: 2px 2px 5px #888888;
+    transform: rotateY(0deg);
+}
+
+.front, .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+}
+
+.question {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: bold;
+    color: #F1F0FF;
+    padding: 0 5px;
+    text-align: center;
+    display: table-cell; 
+    vertical-align: middle; 
+}
+
+.answer {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 11px;
+    padding: 0 5px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle; 
+}
+
+.flip-container {
+    perspective: 1000;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -o-perspective: 1000;
+    height: 100%;
+    width: 100%;
+    margin-left: 4px;
+    max-width: 180px;
+    max-height: 180px;
+    display: inline-block;
+}
+
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+}
+
+.flipper {
+    position: relative;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+}
+
+/* Cards colors */
+.front#color_qa_basics {
+    background-color: #9A4EAE;
+}
+
+.front#color_testing_types {
+    background-color: #9932CC;
+}
+
+.front#color_about_bugs {
+    background-color: #DA70D6;
+}
+
+.front#color_documentation {
+    background-color: #C54B8C;
+}
+
+.front#color_technical {
+    background-color: #86608E;
+}
+
+.front#color_mobile {
+    background-color: #9370DB;
+}

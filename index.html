@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>QA Intern interview preparations. Popular interview questions and answers</title>
+        <meta charset="UTF-8" />
+        <meta name="author" content="Andrii Khmelkov" />
+        <link type="text/css" rel="stylesheet" href="skin.css" />
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.container').hide();
+                var $mnu = $('#menu').on('click', 'a', function () {
+                    var $this = $(this), $li = $(this).closest('li');
+                    if($li.is('.current')) {
+                        return;
+                    }
+                    
+                    $li.addClass('current');
+                    $mnu.find('.current').not($li).removeClass('current');
+                    // fade out all open subcontents
+                    $('.container:visible').hide(600);
+                    // fade in new selected subcontent
+                    $('#' + $this.data('id')).show(600);
+                });
+                $mnu.find('a:first').click();
+            });
+        </script>
+    </head>
+    <body>
+        <script>            
+            var httpRequest = new XMLHttpRequest();
+            var url = 'cards.json';
+
+            httpRequest.onreadystatechange=function() {
+                if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                    loadJson(httpRequest.responseText);
+                }
+            }
+            httpRequest.overrideMimeType('application/json');
+            httpRequest.open('GET', url, true);
+            httpRequest.send();
+
+            function loadJson(response) {
+                var arr = JSON.parse(response);
+                var i;
+                var category = ["qa_basics", "testing_types", "about_bugs", "documentation", "technical", "mobile"];
+                
+                for (i = 0; i < category.length; i++) {
+                    var current_cat = category[i];
+                    var current_color = category[i];
+                    var current_div = category[i];
+                    var out = "";
+                    var j;
+                    
+                    for (j = 0; j < arr.type[current_cat].length; j++) {
+                        out += "<div class='flip-container' ontouchstart='this.classList.toggle('hover');'>" +
+                            "<div class='flipper'>" +
+                            "<div class='front' " + "id=" + "'color_" + current_color + "'>" +
+                            "<span class='question'>" +
+                            arr.type[current_cat][j].question +
+                            "</span>" +
+                            "</div>" +
+                            "<div class='back'>" +
+                            "<span class='answer'>" +
+                            arr.type[current_cat][j].answer +
+                            "</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>";
+                    }
+                    document.getElementById(current_div).innerHTML = out;
+                }
+            }
+        </script>
+        <ul id="menu">
+            <li><a href="#" data-id="qa_basics">QA Basics</a></li>
+            <li><a href="#" data-id="testing_types">Testing Types</a></li>
+            <li><a href="#" data-id="about_bugs">Bugs</a></li>
+            <li><a href="#" data-id="documentation">Documentation</a></li>
+            <li><a href="#" data-id="technical">Technical</a></li>
+            <li><a href="#" data-id="mobile">Mobile</a></li>
+        </ul>
+        <div class="container" id="qa_basics"></div>
+        <div class="container" id="testing_types"></div>
+        <div class="container" id="about_bugs"></div>
+        <div class="container" id="documentation"></div>
+        <div class="container" id="technical"></div>
+        <div class="container" id="mobile"></div>
+    </body>
+</html>
