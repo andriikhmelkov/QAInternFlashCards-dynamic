@@ -29,20 +29,20 @@
     <body>
         <script>            
             var httpRequest = new XMLHttpRequest();
-            var url = 'cards.json';
+            var url = "cards.json";
 
-            httpRequest.onreadystatechange=function() {
+            httpRequest.onreadystatechange = function () {
                 if (httpRequest.readyState == 4 && httpRequest.status == 200) {
                     loadJson(httpRequest.responseText);
                 }
             }
-            httpRequest.overrideMimeType('application/json');
-            httpRequest.open('GET', url, true);
+            httpRequest.overrideMimeType("application/json");
+            httpRequest.open("GET", url, true);
             httpRequest.send();
 
             function loadJson(response) {
                 var arr = JSON.parse(response);
-                var i;
+                var i, j;
                 var category = ["qa_basics", "testing_types", "about_bugs", "documentation", "technical", "mobile"];
                 
                 for (i = 0; i < category.length; i++) {
@@ -50,7 +50,6 @@
                     var current_color = category[i];
                     var current_div = category[i];
                     var out = "";
-                    var j;
                     
                     for (j = 0; j < arr.type[current_cat].length; j++) {
                         out += "<div class='flip-container' ontouchstart='this.classList.toggle('hover');'>" +
