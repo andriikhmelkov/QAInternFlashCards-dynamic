@@ -52,6 +52,10 @@
 			"id": "013",
 			"question": "How to test if there are no requirements?",
 			"answer": "Use common sense;<br/>Compare to similar applications;<br/>Try exploratory testing."
+		}, {
+			"id": "014",
+			"question": "What is 'Pesticide paradox'?",
+			"answer": "If the same tests are repeated over and over again, eventually the same test cases will no longer find new bugs. Test cases needed to be regulary reviewed and revised, addig new and different test cases to fin more defects."
 		}],
 		"testing_types": [{
 			"id": "101",
